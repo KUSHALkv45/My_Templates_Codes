@@ -1,0 +1,105 @@
+//BFS
+
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) {
+            adj.add(new ArrayList<>());
+        }
+
+        for (int i = 0; i < prerequisites.length; i++) {
+            adj.get(prerequisites[i][1]).add(prerequisites[i][0]);
+        }
+
+        int[] indegree = new int[numCourses];
+
+        for (int i = 0; i < numCourses; i++) {
+            for (int neighbor : adj.get(i)) {
+                indegree[neighbor]++;
+            }
+        }
+
+        Queue<Integer> q = new LinkedList<>();
+
+        for (int i = 0; i < numCourses; i++) {
+            if (indegree[i] == 0) {
+                q.add(i);
+            }
+        }
+
+        int[] ans = new int[numCourses];
+        int count = 0;
+
+        while (!q.isEmpty()) {
+            int polled = q.poll();
+            ans[count++] = polled;
+
+            for (int i : adj.get(polled)) {
+                indegree[i]--;
+                if (indegree[i] == 0) {
+                    q.add(i);
+                }
+            }
+        }
+        if (count != numCourses) {
+            return new int[] {};
+        }
+        return ans;
+    }
+}
+<------------------------------------------------------------------------------------------------------------------------------------------------------------------>
+
+//DFS
+
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) {
+            adj.add(new ArrayList<>());
+        }
+
+        for (int i = 0; i < prerequisites.length; i++) {
+            adj.get(prerequisites[i][1]).add(prerequisites[i][0]);
+        }
+
+        boolean[] visited = new boolean[numCourses];
+        boolean[] path = new boolean[numCourses];
+
+        int[] ans = new int[numCourses];
+        Stack<Integer> S = new Stack<>();
+
+        for (int i = 0; i < numCourses; i++) {
+            if (!visited[i]) {
+                if (dfs(i, adj, visited, path, S)) {
+                    return new int[] {};
+                }
+            }
+        }
+
+        int idx = 0;
+        while (!S.isEmpty()) {
+            ans[idx++] = S.pop();
+        }
+
+        return ans;
+    }
+    private static boolean dfs(int current, ArrayList<ArrayList<Integer>> adj, boolean[] visited, boolean[] path,
+            Stack<Integer> S) {
+        visited[current] = true;
+        path[current] = true;
+
+        for (int i : adj.get(current)) {
+            if (!visited[i]) {
+                if (dfs(i, adj, visited, path, S)) {
+                    return true;
+                }
+            } else if (path[i]) {
+                return true;
+            }
+        }
+
+        S.push(current);
+        path[current] = false; // backtrack
+        return false;
+    }
+}
