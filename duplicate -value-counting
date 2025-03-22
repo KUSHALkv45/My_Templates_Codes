@@ -1,0 +1,13 @@
+       HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i : nums){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        int ind = 0;
+        int n = map.keySet().size();
+        int [][] req = new int [n][2];
+        for(int i : map.keySet()){
+            req[ind][0] = i;
+            req[ind][1] = i*map.get(i);
+            ind++;
+        }
+        // Arrays.sort(req,(a,b)->Integer.compare(a[0],b[0])) ;  //- based on input
