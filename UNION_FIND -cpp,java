@@ -1,56 +1,58 @@
-class DS {
-public:
-    vector<int> parent, size;
-    
-    DS(int n) {
-        parent.resize(n);
-        size.assign(n, 1);
+public class DS {
+    int[] parent;
+    int[] size;
+
+    public DS(int n) {
+        parent = new int[n];
+        size = new int[n];
+
         for (int i = 0; i < n; i++) {
             parent[i] = i;
+            size[i] = 1;
         }
     }
-    
-    int findP(int ver) {
-        if (parent[ver] == ver) return ver;
-        return parent[ver] = findP(parent[ver]); 
+
+    public int findP(int ver) {
+        if (parent[ver] == ver) {
+            return ver;
+        }
+        return parent[ver] = findP(parent[ver]);
     }
-    
-    void unionE(int v1, int v2) {
+
+    public void union(int v1, int v2) {
         int uv1 = findP(v1);
         int uv2 = findP(v2);
-        
-        if (uv1 == uv2) {
-              continue;
-              //eCount[uv1]++;
-        } else {
+
+        if (uv1 != uv2) {
             if (size[uv1] > size[uv2]) {
                 parent[uv2] = uv1;
                 size[uv1] += size[uv2];
-                //eCount[uv1] += eCount[uv2] + 1;
+
             } else {
                 parent[uv1] = uv2;
                 size[uv2] += size[uv1];
-                //eCount[uv2] += eCount[uv1] + 1;
+
             }
         }
     }
-    
- 
-};
 
-class Solution {
-public:
-    int countCompleteComponents(int n, vector<vector<int>>& edges) {
-        DS ds(n);
-        for (const auto& edge : edges) {
-            ds.unionE(edge[0], edge[1]);
+    public int req() {
+        int totalCount = 0;
+        boolean set[] = new boolean[101];
+        for (int i = 0; i < parent.length; i++) {
+            int p = findP(parent[i]);
+            if (!set[p]) {
+                set[p] = true;
+                totalCount++;
+
+            }
         }
-        return ds.req();
+        return totalCount;
     }
-};
 
+}
 
-<------------------------------------------------------------------------------------------------------------------------------------------------------------------>
+<------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 
 class DS {
 public:
