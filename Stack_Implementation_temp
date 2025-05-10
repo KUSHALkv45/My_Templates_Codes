@@ -1,0 +1,9 @@
+ int [] stack = new int [p.length];
+        int idx = 1;
+        for(int i = 1 ; i < p.length ; i++){
+            while(idx > 0 && p[i] <= p[stack[idx-1]]){
+                p[stack[idx-1]] -= p[i];
+                idx--;
+            }
+            stack[idx++] = i;
+        }
