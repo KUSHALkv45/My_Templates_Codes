@@ -1,0 +1,44 @@
+public class Traverse {
+    
+    private static void rowTraverse(int [][] matrix){
+        // I want from right to left
+        for(int i = 0 ; i < matrix.length ; i++){
+            for(int j = matrix[0].length-1 ; j >= 0 ; j--){
+                System.out.print(matrix[i][matrix[0].length-1-j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void diagonalTraverse(int [][] matrix){
+        int [][] req = new int[matrix.length][matrix[0].length];
+
+        for(int i = 0 ; i < matrix.length ; i++){
+            for(int j = 0 ; j <= i ; j++){
+                System.out.print(matrix[i-j][matrix[0].length-1-j] + "  ");
+            }
+            System.out.println();
+        }
+        
+        for(int i = matrix[0].length-2 ; i >= 0 ; i--){
+            for(int j = i ; j >= 0 ; j--){
+                System.out.print(matrix[matrix.length-1-(i-j)][j] + " ");
+            }
+            System.out.println();
+        }
+
+    }
+    
+    public static void main(String[] args) {
+        int [][] matrix = new int [3][4];
+        int num = 1;
+        for(int i = 0 ; i < 3 ; i++){
+            for(int j = 0 ; j < 4 ; j++){
+                matrix[i][j] = num++; 
+            }
+        }
+
+        rowTraverse(matrix);
+        diagonalTraverse(matrix);
+    }
+}
