@@ -1,0 +1,39 @@
+      HashMap<Integer,int []> map = new HashMap<>();
+        int [] maxD = new int [2];
+        
+        dfs(0,0,root,map,maxD);
+        
+        ArrayList<Integer> ansList = new ArrayList<>();
+        for(int i = maxD[0] ; i <= maxD[1] ; i++){  // X-axis ranges from [ maxD[0] , maxD[1] ]
+            if(map.containsKey(i)){
+                ansList.add(map.get(i)[1]);
+            }
+        }
+
+
+      function 
+        dfs(int dep , int val , Node root , HashMap<Integer,int []> map , int [] maxD){
+        if(root != null){
+            
+                maxD[0] = Math.min(val,maxD[0]);
+                maxD[1] = Math.max(val,maxD[1]);
+            
+            if(map.containsKey(val)){
+                int [] a = map.get(val);   // change logic here acc to requirments
+                // depth - y - axis 
+                if(a[0] > dep){
+                    a[0] = dep;
+                    a[1] = root.data;
+                }
+                map.put(val,a); // x-axis - val , y-axis - dep , value = data
+            }
+            
+            else{
+                map.put(val,new int []{dep,root.data});
+            }
+            dfs(dep+1,val-1,root.left,map,maxD);
+            dfs(dep+1,val+1,root.right,map,maxD);
+        }
+    }
+        
+        
