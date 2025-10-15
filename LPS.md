@@ -1,5 +1,5 @@
 ```java
- int max = 1;
+        int max = 1;
         
         // return s.length() == 1 ? 1 : s.length() == 2 ? s.charAt(0) == s.charAt(1) ? 2 : 1;
         if(s.length() == 1 ){return s;}
