@@ -1,4 +1,4 @@
-Introduction
+**Introduction**
 This article serves as an introduction to some fundamental concepts in binary number manipulation, including binary number conversion, one's complement, and two's complement and many more concepts. These concepts are not only fundamental to understanding how computers work but also crucial for solving a variety of problems in computer science.
 
 Having an understanding of binary numbers is extremely important in the field of computer science as everything stored in a computer is in the form of only 0s and 1s.
@@ -20,7 +20,7 @@ To obtain the binary equivalent of 13, read the remainders from bottom to top: 1
 
 So, the binary equivalent of 13 is 1101.
 
-Binary to Decimal Conversion:
+***Binary to Decimal Conversion:***
 Converting a binary number back to its decimal equivalent involves a reverse process.
 
 Example: Converting 1101 to its decimal equivalent:
@@ -35,7 +35,7 @@ Sum = 1 + 0 + 4 + 8 = 13.
 
 Hence, the decimal equivalent of the binary number 1101 is 13.
 
-Understanding One's Complement and Two's Complement
+***Understanding One's Complement and Two's Complement***
 One's Complement
 The one's complement of a binary number is obtained by flipping all the bits.
 
@@ -81,17 +81,23 @@ Right Shift (>>): Shifts bits to the right, fills left with 0s.
 Left Shift (<<): Shifts bits to the left, fills right with 0s.
 
 13 << 1 = 11010 → 26
-Bit Manipulation Tricks and Techniques
-1. Swapping Two Numbers Without a Third Variable
+
+***Bit Manipulation Tricks and Techniques**
+
+- 1. Swapping Two Numbers Without a Third Variable
 A = A ^ B
 B = A ^ B
 A = A ^ B
-2. Checking if the i-th Bit is Set
+
+- 2. Checking if the i-th Bit is Set
 (1 << i) & num   → set if result ≠ 0
 (num >> i) & 1   → set if result ≠ 0
-3. Setting the i-th Bit
+
+- 3. Setting the i-th Bit
 num | (1 << i)
-4. Clearing the i-th Bit
+
+- 4. Clearing the i-th Bit
 num & ~(1 << i)
-5. Toggling the i-th Bit
+
+- 5. Toggling the i-th Bit
 num ^ (1 << i)
