@@ -1,3 +1,4 @@
+```java
 public class DS {
     int[] parent;
     int[] size;
@@ -51,9 +52,10 @@ public class DS {
     }
 
 }
+```
 
-<------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
+---
+``` c++
 class DS {
 public:
     vector<int> parent, size, eCount;
@@ -120,4 +122,52 @@ public:
         return ds.req();
     }
 };
+```
+---
+### date : 08-11-25 improved something
+```java
+public class DS {
+    int[] parent;
+    int[] size;
+    int compCount ;
 
+    public DS(int n) {
+        parent = new int[n];
+        size = new int[n];
+        compCount = n;
+
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+            size[i] = 1;
+        }
+    }
+
+    public int findP(int ver) {
+        if (parent[ver] == ver) {
+            return ver;
+        }
+        return parent[ver] = findP(parent[ver]);
+    }
+
+    public void union(int v1, int v2) {
+        int uv1 = findP(v1);
+        int uv2 = findP(v2);
+
+        if (uv1 != uv2) {
+            if (size[uv1] > size[uv2]) {
+                parent[uv2] = uv1;
+                size[uv1] += size[uv2];
+
+            } else {
+                parent[uv1] = uv2;
+                size[uv2] += size[uv1];
+
+            }
+            compCount--;
+        }
+    }
+}   
+
+```
+
+---
