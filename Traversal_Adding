@@ -1,3 +1,4 @@
+```java
 class Solution {
     List<List<Integer>> adj;
     int[] ans;
@@ -38,5 +39,5 @@ class Solution {
 
 
     }
-
+```
 
