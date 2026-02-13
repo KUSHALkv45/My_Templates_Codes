@@ -97,3 +97,31 @@ public class Main {
 }
 ```
 
+```python
+
+import sys
+input = sys.stdin.readline
+
+t = int(input())
+
+for _ in range(t):
+    n = int(input())
+    
+    a = list(map(int, input().split()))
+    b = list(map(int, input().split()))
+    c = list(map(int, input().split()))
+
+
+#######################
+
+import sys
+import math
+
+input = sys.stdin.readline
+
+t = int(input())
+
+for _ in range(t):
+    n, x, y = map(int, input().split())
+```
+
